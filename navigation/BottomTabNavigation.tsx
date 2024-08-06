@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { Home, Search, Profile } from '@/screens'
+import { Home, Search, Profile, Message } from '@/screens'
 import { Ionicons } from '@expo/vector-icons'
 import {COLORS} from "../constants/index"
 
@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator()
 const screenOptions = {
   tabBarShowLabel: false,
   tabBarHideOnKeyboard: true,
-  headerShow: false,
+  headerShown: false,
   tabStyle:{
     position:"absolute",
     bottom:0,
@@ -49,17 +49,30 @@ const BottomTabNavigation = () => {
         }}
         />
          <Tab.Screen 
-        name='Profile' 
-        component={Profile} 
-        options={{
-          tabBarIcon:({focused})=>{
-            return <Ionicons name={focused ? "person" : "person-outline"} 
-            size={24}
-            color={focused ? COLORS.primary : COLORS.gray2}
+            name='Message' 
+            component={Message} 
+            options={{
+              tabBarIcon:({focused})=>{
+                return <Ionicons name={ "options" } 
+                size={24}
+                color={focused ? COLORS.primary : COLORS.gray2}
             />
-          }
-        }}
-        />
+            }
+            }}
+          />
+         <Tab.Screen 
+            name='Profile' 
+            component={Profile} 
+            options={{
+              tabBarIcon:({focused})=>{
+                return <Ionicons name={focused ? "person" : "person-outline"} 
+                size={24}
+                color={focused ? COLORS.gray : COLORS.gray2}
+            />
+            }
+            }}
+          />
+         
     </Tab.Navigator>
   )
 }
